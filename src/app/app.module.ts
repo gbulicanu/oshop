@@ -7,11 +7,13 @@ import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { DatabaseModule } from "@angular/fire/database";
 import { AuthModule } from "@angular/fire/auth";
 import { environment } from '../environments/environment';
+import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BsNavbarComponent
   ],
   imports: [
     AuthModule,
