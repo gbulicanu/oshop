@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Auth, authState, signOut, User } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
