@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
-import { DatabaseModule } from "@angular/fire/database";
+import { DatabaseModule, provideDatabase } from "@angular/fire/database";
 import { AuthModule, getAuth, provideAuth } from "@angular/fire/auth";
 import { environment } from '../environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+import { UserService } from './user.service';
+import { getDatabase } from 'firebase/database';
 
 
 @NgModule({
@@ -42,12 +44,14 @@ import { AuthGuard } from './auth.guard';
     BrowserModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
     DatabaseModule,
     NgbModule
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
