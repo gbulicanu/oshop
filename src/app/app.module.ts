@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { DatabaseModule } from "@angular/fire/database";
-import { AuthModule } from "@angular/fire/auth";
+import { AuthModule, getAuth, provideAuth } from "@angular/fire/auth";
 import { environment } from '../environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
@@ -39,6 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AuthModule,
     BrowserModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
     DatabaseModule,
     NgbModule
   ],
