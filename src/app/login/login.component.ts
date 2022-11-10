@@ -1,6 +1,5 @@
-import { Auth, authState, signInWithRedirect } from '@angular/fire/auth';
 import { Component } from '@angular/core';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +7,10 @@ import { GoogleAuthProvider } from 'firebase/auth';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private afa: Auth) {
-    authState(afa).subscribe(as => console.log(as))
+  constructor(private auth: AuthService) {
   }
 
   login() {
-    console.log('login');
-    signInWithRedirect(this.afa, new GoogleAuthProvider())
-      .then(c => console.log('signInWithRedirect', c));
+    this.auth.login();
   }
 }
