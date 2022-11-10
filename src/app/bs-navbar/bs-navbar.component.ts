@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Auth, authState, signOut } from '@angular/fire/auth';
+import { Auth, authState, signOut, User } from '@angular/fire/auth';
 
 @Component({
   selector: 'bs-navbar',
@@ -7,9 +7,10 @@ import { Auth, authState, signOut } from '@angular/fire/auth';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent {
+  user: User | null = null;
 
   constructor(private afa: Auth) {
-    authState(afa).subscribe(as => console.log(as))
+    authState(afa).subscribe(user => this.user = user)
   }
 
   logout() {
