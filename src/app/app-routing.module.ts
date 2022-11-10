@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'check-out', component: CheckOutComponent },
   { path: 'order-success', component: OrderSuccessComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'admin/products`', component: AdminProductsComponent },
+  { path: 'admin/products', component: AdminProductsComponent },
   { path: 'admin/orders', component: AdminOrdersComponent },
 ];
 

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Top navbar</a>
+    <a class="navbar-brand" href="#">O</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -27,28 +27,26 @@
             href="#"
             id="dropdown01"
             data-toggle="dropdown01"
-            >Dropdown</a
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Username</a
           >
           <div
             ngbDropdownMenu
             class="dropdown-menu"
             aria-labelledby="dropdown01"
           >
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
+            <a class="dropdown-item" routerLink="/admin/orders"
+              >Manage Orders</a
+            >
+            <a class="dropdown-item" routerLink="/admin/products"
+              >Manage Products</a
+            >
+            <a class="dropdown-item">Log Out</a>
           </div>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>
