@@ -22,6 +22,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { UserService } from './user.service';
 import { getDatabase } from 'firebase/database';
+import { AdminAuthGuard } from './admin-auth.guard';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { getDatabase } from 'firebase/database';
   providers: [
     AuthService,
     AuthGuard,
+    AdminAuthGuard,
     UserService
   ],
   bootstrap: [AppComponent]
