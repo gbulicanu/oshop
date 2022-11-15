@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { filter, map, switchMap } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { map } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 
@@ -11,9 +11,7 @@ export class AdminAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private users: UserService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      return this.auth.user$.pipe(
-        filter(user => user !== null),
-        switchMap(user => this.users.get(user!.uid)),
-        map(appUser => appUser.isAdmin));
+      return this.auth.appUser$.pipe(
+        map(appUser => appUser?.isAdmin ?? false));
   }
 }

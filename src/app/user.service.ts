@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Database, get, getDatabase, ref, update } from "@angular/fire/database";
+import { child, Database, get, getDatabase, ref, update } from "@angular/fire/database";
 import { User } from 'firebase/auth';
 import { from, Observable, map } from 'rxjs';
 import { AppUser } from './models';
@@ -22,7 +22,7 @@ export class UserService {
   }
 
   get(uid: string): Observable<AppUser> {
-    return from(get(ref(this.db, 'users/' + uid)))
+    return from(get(child(ref(this.db), 'users/' + uid)))
       .pipe(map(result => result.val()));
   }
 }

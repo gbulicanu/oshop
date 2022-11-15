@@ -1,17 +1,31 @@
+import { UserService } from './user.service';
 import { GoogleAuthProvider, User } from 'firebase/auth';
 import { Injectable } from '@angular/core';
 import { Auth, authState, signInWithRedirect, signOut } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { AppUser } from './models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<User | null>;
+  private appUserSubject: BehaviorSubject<AppUser | null> = new BehaviorSubject<AppUser | null>(null);
 
-  constructor(private afa: Auth, private route: ActivatedRoute) {
-    this.user$ = authState(afa);
+  user$: Observable<User | null>;
+  appUser$: Observable<AppUser | null> = this.appUserSubject.asObservable();
+
+  constructor(private afa: Auth, private route: ActivatedRoute, private users: UserService) {
+    this.user$ = authState(afa)
+      .pipe(tap(user => {
+        if(user) {
+          this.users.get(user.uid)
+            .subscribe(appUser => this.appUserSubject.next(appUser))
+        }
+        else {
+          this.appUserSubject.next(null);
+        }
+      }));
   }
 
   login() {
