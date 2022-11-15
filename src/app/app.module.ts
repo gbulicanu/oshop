@@ -23,6 +23,7 @@ import { AuthGuard } from './auth.guard';
 import { UserService } from './user.service';
 import { getDatabase } from 'firebase/database';
 import { AdminAuthGuard } from './admin-auth.guard';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AdminAuthGuard } from './admin-auth.guard';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     AppRoutingModule,
