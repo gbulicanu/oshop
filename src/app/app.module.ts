@@ -30,6 +30,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { LoginComponent } from './login/login.component';
 
 import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './product.service';
 
 @NgModule({
   declarations: [
@@ -50,18 +52,21 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     AuthModule,
     BrowserModule,
+    DatabaseModule,
+    FormsModule,
+    NgbModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
-    DatabaseModule,
-    NgbModule
+    provideDatabase(() => getDatabase())
   ],
   providers: [
-    AuthService,
     AuthGuard,
     AdminAuthGuard,
-    UserService,
-    CategoryService
+
+    AuthService,
+    CategoryService,
+    ProductService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
