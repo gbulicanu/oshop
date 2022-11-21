@@ -1,8 +1,8 @@
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/category.service';
 import { ProductService } from '../../product.service';
-import { DatabaseReference } from '@angular/fire/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -12,7 +12,10 @@ import { DatabaseReference } from '@angular/fire/database';
 export class ProductFormComponent implements OnInit {
   categories$: Observable<any[]>;
 
-  constructor(categories: CategoryService, private products: ProductService) {
+  constructor(
+    private router: Router,
+    private categories: CategoryService,
+    private products: ProductService) {
     this.categories$ = categories.getCategories();
   }
 
@@ -20,7 +23,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   save(product: unknown) {
-    return from(this.products.create(product));
+    this.products.create(product);
+    this.router.navigate(['admin/products'])
   }
-
 }
