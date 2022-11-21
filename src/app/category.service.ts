@@ -15,7 +15,7 @@ export class CategoryService {
 
   getCategories(): Observable<any[]> {
     const categoriesListRef = ref(this.db, 'categories');
-    return from(get(categoriesListRef))
+    return from(get(query(categoriesListRef, orderByChild('name'))))
      .pipe(map(result => result.val()));
   }
 }
