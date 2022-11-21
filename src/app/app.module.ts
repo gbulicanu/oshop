@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { DatabaseModule, provideDatabase } from "@angular/fire/database";
@@ -28,10 +30,9 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { LoginComponent } from './login/login.component';
+import { ProductService } from './product.service';
 
 import { environment } from '../environments/environment';
-import { FormsModule } from '@angular/forms';
-import { ProductService } from './product.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ProductService } from './product.service';
     AppRoutingModule,
     AuthModule,
     BrowserModule,
+    CustomFormsModule,
     DatabaseModule,
     FormsModule,
     NgbModule,
