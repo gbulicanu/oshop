@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProductFormComponent implements OnInit {
   categories$: Observable<any[]>;
   product: any = {};
+  id: string | null;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,15 +20,17 @@ export class ProductFormComponent implements OnInit {
     private categories: CategoryService,
     private products: ProductService) {
     this.categories$ = this.categories.getCategories();
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) this.products.get(id).pipe(take(1)).subscribe(p => this.product = p)
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) this.products.get(this.id).pipe(take(1)).subscribe(p => this.product = p)
   }
 
   ngOnInit(): void {
   }
 
   save(product: unknown) {
-    this.products.create(product);
+    if (!this.id) this.products.create(product);
+    else this.products.update(this.id, product);
+
     this.router.navigate(['admin/products'])
   }
 }
