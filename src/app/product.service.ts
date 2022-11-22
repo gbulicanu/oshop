@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { child, Database, DatabaseReference, DataSnapshot, get, getDatabase, push, ref, update } from '@angular/fire/database';
+import { child, Database, DatabaseReference, get, getDatabase, push, ref, remove, update } from '@angular/fire/database';
 import { from, Observable, pipe, map } from 'rxjs';
 
 @Injectable({
@@ -28,5 +28,9 @@ export class ProductService {
 
   update(id: string, product: unknown): Observable<void> {
     return from(update(ref(this.db, 'products/' + id), <any>product));
+  }
+
+  delete(id: string): Observable<void> {
+    return from(remove(ref(this.db, 'products/' + id)));
   }
 }
