@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/category.service';
 import { ProductService } from '../../product.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Product } from 'src/app/models';
 
 @Component({
   selector: 'app-product-form',
@@ -11,7 +12,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProductFormComponent implements OnInit {
   categories$: Observable<any[]>;
-  product: any = {};
+  product: Product = {
+    title: '',
+    price: 0,
+    category: '',
+    imageUrl: ''
+  };
   id: string | null;
 
   constructor(
@@ -27,7 +33,7 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  save(product: unknown) {
+  save(product: Product) {
     if (!this.id) this.products.create(product);
     else this.products.update(this.id, product);
 

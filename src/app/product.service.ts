@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { child, Database, DatabaseReference, get, getDatabase, push, ref, remove, update } from '@angular/fire/database';
 import { from, Observable, map } from 'rxjs';
+import { Product } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +13,21 @@ export class ProductService {
     this.db = getDatabase();
   }
 
-  create(product: unknown): Observable<DatabaseReference> {
+  create(product: Product): Observable<DatabaseReference> {
     return from(push(ref(this.db, 'products'), product));
   }
 
-  getAll(): Observable<{ [key: string]: { title: string, price: number } }> {
+  getAll(): Observable<{ [key: string]: Product }> {
     return from(get(ref(this.db, 'products')))
       .pipe(map(snapshot => snapshot.val()));
   }
 
-  get(id: string): Observable<any> {
+  get(id: string): Observable<Product> {
     return from(get(child(ref(this.db), 'products/' + id)))
       .pipe(map(result => result.val()));
   }
 
-  update(id: string, product: unknown): Observable<void> {
+  update(id: string, product: Product): Observable<void> {
     return from(update(ref(this.db, 'products/' + id), <any>product));
   }
 
