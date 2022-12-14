@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
 
@@ -33,6 +36,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductService } from './product.service';
 
 import { environment } from '../environments/environment';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -52,10 +56,14 @@ import { environment } from '../environments/environment';
   imports: [
     AppRoutingModule,
     AuthModule,
+    BrowserAnimationsModule,
     BrowserModule,
     CustomFormsModule,
     DatabaseModule,
     FormsModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     NgbModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
