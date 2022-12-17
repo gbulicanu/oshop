@@ -37,6 +37,7 @@ import { ProductService } from './product.service';
 
 import { environment } from '../environments/environment';
 import { MatSortModule } from '@angular/material/sort';
+import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MatSortModule } from '@angular/material/sort';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductsFilterComponent
   ],
   imports: [
     AppRoutingModule,
