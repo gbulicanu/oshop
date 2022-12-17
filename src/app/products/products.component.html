@@ -1,24 +1,29 @@
 <div class="row">
   <div class="col-3">
-    <ul class="list-group">
-      <li *ngFor="let c of categories$ | async | keyvalue" class="list-group-item">
+    <div class="list-group">
+      <a
+        *ngFor="let c of categories$ | async | keyvalue"
+        class="list-group-item list-group-item-action"
+        routerLink="/"
+        [queryParams]="{ category: c.key }"
+        [class.active]="category === c.key">
         {{ c.value.name }}
-      </li>
-    </ul>
+      </a>
+    </div>
   </div>
   <div class="col">
     <div class="row">
-      <ng-container *ngFor="let p of products$ | async | keyvalue; let i = index">
+      <ng-container *ngFor="let p of filteredProducts; let i = index">
         <div class="col">
-          <div class="card" *ngIf="p.value.title" style="width: 15rem">
+          <div class="card" *ngIf="p.title" style="width: 15rem">
             <img
               class="card-img-top"
-              [src]="p.value.imageUrl"
-              *ngIf="p.value.imageUrl"
+              [src]="p.imageUrl"
+              *ngIf="p.imageUrl"
             />
             <div class="card-body">
-              <h5 class="card-title">{{ p.value.title }}</h5>
-              <p class="card-text">{{ p.value.price | currency: "USD":"symbol" }}</p>
+              <h5 class="card-title">{{ p.title }}</h5>
+              <p class="card-text">{{ p.price | currency: "USD":"symbol" }}</p>
               <a href="#" class="btn btn-primary">Add to Cart</a>
             </div>
           </div>
